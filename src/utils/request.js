@@ -1,4 +1,4 @@
-import fetch from 'dva/fetch';
+import fetch from "dva/fetch";
 
 function parseJSON(response) {
   return response.json();
@@ -24,15 +24,16 @@ function checkStatus(response) {
 export default function request(url, options) {
   url = 'https://api.maxleap.cn/2.0' + url;
   options = {
-    headers:{
+    headers: {
       "X-ML-AppId": "57e240f987d49350fa0354cf",
-      "X-ML-APIKey": "NzJFWjZoNXljbE5WWk1LY0hZWlp1QQ"
+      "X-ML-APIKey": "NzJFWjZoNXljbE5WWk1LY0hZWlp1QQ",
+      "Content-Type": "application/json"
     },
     ...options
   };
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then((data) => ({ data }))
-    .catch((err) => ({ err }));
+    .then((data) => ({data}))
+    .catch((err) => ({err}));
 }

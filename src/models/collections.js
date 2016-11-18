@@ -1,4 +1,4 @@
-import {query} from "../services/collections";
+import {create, query} from "../services/collections";
 import {parse} from "qs";
 
 const STATE = {
@@ -51,21 +51,40 @@ export default {
           },
         });
       }
-    }
+    },
+    *create({payload}, {call, put}) {
+      const {data} = yield call(create, payload);
+      if (data) {
+        yield put({type: 'hideCreateModal'});
+        yield put({type: 'showLoading'});
+        yield put({
+          type: 'createSuccess',
+          payload: {
+            collection: {...payload, ...data},
+          },
+        });
+      } else {
+        console.log('cf', data);
+      }
+    },
   },
 
   reducers: {
+    showCreateModal(state) {
+      return {...state, createModalVisible: true};
+    },
+    hideCreateModal(state) {
+      return {...state, createModalVisible: false};
+    },
     showLoading(state) {
       return {...state, loading: true};
     },
     querySuccess(state, action) {
       return {...state, ...action.payload, loading: false};
     },
-    showCreateModal(state) {
-      return {...state, createModalVisible: true};
-    },
-    hideCreateModal(state) {
-      return {...state, createModalVisible: false};
+    createSuccess(state, action) {
+      const newItems = [action.payload.collection].concat(state.items);
+      return {...state, items: newItems, loading: false};
     },
   },
 

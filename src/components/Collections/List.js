@@ -2,11 +2,12 @@ import React, {PropTypes} from "react";
 import styles from "./List.css";
 import {Spin, Col, Row} from "antd";
 import CreateItemCard from "./CreateItemCard";
+import ItemCard from "./ItemCard";
 
 const List = ({loading, items, onCreate}) => {
 
   const createItem = {
-    id: 'create',
+    objectId: 'create',
     name: '创建印集',
   };
 
@@ -16,8 +17,8 @@ const List = ({loading, items, onCreate}) => {
         <Row>
           {
             [createItem, ...items].map((item) => (
-              <Col span="6" key={item.id}>
-                {item.id === 'create' ? <CreateItemCard onCreate={onCreate}/> : item.name}
+              <Col span="6" key={item.objectId}>
+                {item.objectId === 'create' ? <CreateItemCard onCreate={onCreate}/> : <ItemCard item={item}/>}
               </Col>
             ))
           }

@@ -15,11 +15,10 @@ const Collections = ({location, dispatch, collections}) => {
   const createModalProps = {
     visible: createModalVisible,
     onOk(data) {
-      console.log(data);
-      // dispatch({
-      //   type: `users/${editModalType}`,
-      //   payload: data,
-      // });
+      dispatch({
+        type: `collections/create`,
+        payload: data,
+      });
     },
     onCancel() {
       dispatch({
