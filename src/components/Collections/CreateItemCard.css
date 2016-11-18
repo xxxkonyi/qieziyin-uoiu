@@ -1,0 +1,15 @@
+.container {
+  min-height: 240px;
+}
+
+.create-item {
+  text-align: center;
+  cursor: pointer;
+  padding-top: 25%;
+  padding-bottom: 25%;
+}
+
+.create-item i {
+  font-size: 24px;
+  margin: 12px 0 16px;
+}
