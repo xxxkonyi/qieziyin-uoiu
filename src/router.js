@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import { Router } from 'dva/router';
+import React, {PropTypes} from "react";
+import {Router} from "dva/router";
 
 export default function({ history, app }) {
 

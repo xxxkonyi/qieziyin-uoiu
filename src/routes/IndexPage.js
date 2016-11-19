@@ -6,7 +6,7 @@ import MainLayout from '../components/MainLayout/MainLayout';
 const IndexPage = ({location}) => {
   return (
     <MainLayout location={location}>
-      <div>首页内容123</div>
+      <div>首页内容</div>
     </MainLayout>
   );
 }

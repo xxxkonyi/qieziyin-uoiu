@@ -4,12 +4,11 @@
     "index": "./src/index.js"
   },
   "dependencies": {
-    "antd": "^2.4.2",
+    "antd": "^2.4.3",
     "dva": "^1.1.0",
+    "qs": "^6.3.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "redux-logger": "^2.7.4",
-    "site": "^2.21.0"
+    "react-dom": "^15.3.2"
   },
   "devDependencies": {
     "atool-build": "^0.9.0",
@@ -26,8 +25,7 @@
     "redbox-react": "^1.3.2"
   },
   "scripts": {
-    "start": "dora --plugins \"proxy?watchDirs=./mock,webpack,webpack-hmr\"",
-    "build": "atool-build",
-    "test": "atool-test-mocha ./src/**/*-test.js"
+    "start": "dora --plugins \"webpack,webpack-hmr\"",
+    "build": "atool-build"
   }
 }
