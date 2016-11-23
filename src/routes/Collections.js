@@ -1,19 +1,27 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "dva";
 import MainLayout from "../components/MainLayout/MainLayout";
-import EditModal from "../components/Collections/CreateModal";
+import CreateModal from "../components/Collections/CreateModal";
+import ChangeModal from "../components/Collections/ChangeModal";
 import CollectionList from "../components/Collections/List";
 
 const Collections = ({location, dispatch, collections}) => {
 
   const {
-    createModalVisible,
+    createVisible,
+    createConfirmLoading,
+    createItem,
+    changeVisible,
+    changeConfirmLoading,
+    changeItem,
     loading,
     items,
   } = collections;
 
   const createModalProps = {
-    visible: createModalVisible,
+    visible: createVisible,
+    confirmLoading: createConfirmLoading,
+    createItem,
     onOk(data) {
       dispatch({
         type: `collections/create`,
@@ -22,7 +30,24 @@ const Collections = ({location, dispatch, collections}) => {
     },
     onCancel() {
       dispatch({
-        type: 'collections/hideCreateModal',
+        type: 'collections/hideCreate',
+      });
+    },
+  };
+
+  const changeModalProps = {
+    visible: changeVisible,
+    confirmLoading: changeConfirmLoading,
+    changeItem,
+    onOk(data) {
+      dispatch({
+        type: `collections/change`,
+        payload: data,
+      });
+    },
+    onCancel() {
+      dispatch({
+        type: 'collections/hideChange',
       });
     },
   };
@@ -32,14 +57,27 @@ const Collections = ({location, dispatch, collections}) => {
     items,
     onCreate: ()=> {
       dispatch({
-        type: 'collections/showCreateModal',
+        type: 'collections/showCreate',
+      });
+    },
+    onEditItem: (item)=> {
+      dispatch({
+        type: `collections/showChange`,
+        payload: item,
+      });
+    },
+    onDeleteItem: (objectId)=> {
+      dispatch({
+        type: 'collections/remove',
+        payload: objectId,
       });
     },
   };
 
   return (
     <MainLayout location={location}>
-      <EditModal {...createModalProps} />
+      <CreateModal {...createModalProps} />
+      <ChangeModal {...changeModalProps} />
       <CollectionList {...collectionListProps} />
     </MainLayout>
   );

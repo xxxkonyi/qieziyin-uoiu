@@ -1,28 +1,26 @@
 import React, {PropTypes} from "react";
 import styles from "./List.css";
-import {Spin, Col, Row} from "antd";
+import {Spin} from "antd";
 import CreateItemCard from "./CreateItemCard";
 import ItemCard from "./ItemCard";
 
-const List = ({loading, items, onCreate}) => {
+const List = ({loading, items, onCreate, onEditItem, onDeleteItem}) => {
 
   const createItem = {
     objectId: 'create',
-    name: '创建印集',
   };
 
   return (
     <Spin spinning={loading}>
       <div className={styles['container']}>
-        <Row>
-          {
-            [createItem, ...items].map((item) => (
-              <Col span="6" key={item.objectId}>
-                {item.objectId === 'create' ? <CreateItemCard onCreate={onCreate}/> : <ItemCard item={item}/>}
-              </Col>
-            ))
-          }
-        </Row>
+        {
+          [createItem, ...items].map((item) => (
+            <div key={item.objectId} className={styles['item']}>
+              {item.objectId === 'create' ? <CreateItemCard onCreate={onCreate}/> :
+                <ItemCard item={item} onEditItem={onEditItem} onDeleteItem={onDeleteItem}/>}
+            </div>
+          ))
+        }
       </div>
     </Spin>
   );

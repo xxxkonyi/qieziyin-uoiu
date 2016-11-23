@@ -2,9 +2,10 @@ import React, {PropTypes} from "react";
 import {Modal, Form, Input, Radio, Icon} from "antd";
 const FormItem = Form.Item;
 
-const CreateModal = ({
+const ChangeModal = ({
   visible,
   confirmLoading,
+  changeItem,
   onOk,
   onCancel,
   form: {
@@ -18,13 +19,13 @@ const CreateModal = ({
       if (errors) {
         return;
       }
-      const data = {...getFieldsValue()};
+      const data = {...getFieldsValue(), objectId: changeItem.objectId};
       onOk(data);
     });
   }
 
   const modalOptions = {
-    title: '创建印集',
+    title: '修改印集',
     maskClosable: false,
     visible,
     confirmLoading,
@@ -56,7 +57,7 @@ const CreateModal = ({
   );
 };
 
-CreateModal.propTypes = {
+ChangeModal.propTypes = {
   visible: PropTypes.any,
   confirmLoading: PropTypes.any,
   form: PropTypes.object.isRequired,
@@ -67,9 +68,9 @@ CreateModal.propTypes = {
 export default Form.create({
   mapPropsToFields(props) {
     return {
-      name: {value: props.createItem.name},
-      accessType: {value: props.createItem.accessType},
-      description: {value: props.createItem.description},
+      name: {value: props.changeItem.name},
+      accessType: {value: props.changeItem.accessType},
+      description: {value: props.changeItem.description},
     };
   },
-})(CreateModal);
+})(ChangeModal);

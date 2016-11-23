@@ -1,13 +1,17 @@
-import './index.html';
-import './index.css';
-import 'antd/dist/antd.css';
-import dva from 'dva';
+import "./index.html";
+import "./index.css";
+import "antd/dist/antd.css";
+import dva from "dva";
 
 // 1. Initialize
 const app = dva();
 
 // 2. Plugins
-//app.use({});
+app.use({
+  onError: (error) => {
+    console.log('here', error.message,error.response)
+  }
+});
 
 // 3. Model
 //app.model(require('./models/example'));
