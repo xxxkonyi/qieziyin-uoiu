@@ -51,7 +51,7 @@ const MainLayout = ({children, location, dispatch, user}) => {
                 </div> :
                 <div>
                   <Dropdown overlay={menu}>
-                    <a className="ant-dropdown-link" href="#">
+                    <a className="ant-dropdown-link">
                       {user.current.name} <Icon type="down"/>
                     </a>
                   </Dropdown>
