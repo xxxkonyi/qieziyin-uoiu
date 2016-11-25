@@ -14,6 +14,24 @@ export default function({ history, app }) {
       },
     },
     {
+      path: '/login',
+      name: 'login',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          cb(null, require('./routes/user/Login'));
+        });
+      },
+    },
+    {
+      path: '/register',
+      name: 'register',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          cb(null, require('./routes/user/Register'));
+        });
+      },
+    },
+    {
       path: '/news',
       name: 'news',
       getComponent(nextState, cb) {

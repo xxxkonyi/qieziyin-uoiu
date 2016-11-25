@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {routerRedux} from "dva/router";
 import {connect} from "dva";
 import {Table} from "antd";
-import MainLayout from "../components/MainLayout/MainLayout";
+import MainLayout from "../components/Layout/Layout";
 
 const News = ({location, dispatch, news}) => {
 
@@ -81,11 +81,11 @@ const News = ({location, dispatch, news}) => {
   };
 
   return (
-    <MainLayout location={location}>
+    <MainLayout location={location} dispatch={dispatch}>
       <Table {...newsTableProps} rowKey={record => record.objectId} scroll={{x: 800}}/>
     </MainLayout>
   );
-}
+};
 
 News.propTypes = {
   news: PropTypes.object,

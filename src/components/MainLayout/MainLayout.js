@@ -22,10 +22,14 @@ const MainLayout = ({ children, location }) => {
       <aside className={styles["ant-layout-sider"]}>
         <div className={styles["ant-layout-logo"]}></div>
         <Menu mode="inline" theme="dark"
-              defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']}
+              defaultSelectedKeys={['home']} defaultOpenKeys={['sub1']}
               selectedKeys={[getMenuKeyFromUrl(location.pathname)]}>
           <Menu.Item key="home"><Link to="/"><Icon type="home" />工作台</Link></Menu.Item>
           <SubMenu key="sub1" title={<span><Icon type="user" />导航一</span>}>
+            <Menu.Item key="login"><Link to="/login">登录</Link></Menu.Item>
+            <Menu.Item key="register"><Link to="/register">注册</Link></Menu.Item>
+            <Menu.Item key="forgot-password"><Link to="/forgot-password">忘记密码</Link></Menu.Item>
+            <Menu.Item key="update-password"><Link to="/update-password">修改密码</Link></Menu.Item>
             <Menu.Item key="news"><Link to="/news"><Icon type="bars" />News</Link></Menu.Item>
             <Menu.Item key="collections"><Link to="/collections"><Icon type="appstore" />Collections</Link></Menu.Item>
             <Menu.Item key="3">选项3</Menu.Item>

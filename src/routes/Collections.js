@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "dva";
-import MainLayout from "../components/MainLayout/MainLayout";
+import MainLayout from "../components/Layout/Layout";
 import CreateModal from "../components/Collections/CreateModal";
 import ChangeModal from "../components/Collections/ChangeModal";
 import CollectionList from "../components/Collections/List";
@@ -75,13 +75,13 @@ const Collections = ({location, dispatch, collections}) => {
   };
 
   return (
-    <MainLayout location={location}>
+    <MainLayout location={location} dispatch={dispatch}>
       <CreateModal {...createModalProps} />
       <ChangeModal {...changeModalProps} />
       <CollectionList {...collectionListProps} />
     </MainLayout>
   );
-}
+};
 
 Collections.propTypes = {
   collections: PropTypes.object,

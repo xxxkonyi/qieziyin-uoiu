@@ -80,10 +80,14 @@ module.exports = {
       headers: getRequestHeaders(request)
     }, function (error, resp, body) {
       console.log('【' + index + '，response：】' + resp.statusCode);
+      body = JSON.parse(body);
       if (resp.statusCode === 200) {
         var result;
         try {
-          result = JSON.parse(body);
+          result = {
+            success: true,
+            responseBody: body
+          };
         } catch (ex) {
           result = {
             success: false,
@@ -92,7 +96,6 @@ module.exports = {
         }
         response.json(result);
       } else {
-        response.status(resp.statusCode);
         response.json({success: false, responseBody: body});
       }
     });

@@ -1,5 +1,6 @@
-import {query, create, remove, change} from "../services/collections";
+import  {query, create, remove, change} from "../services/collections";
 import {parse} from "qs";
+import {message} from "antd";
 
 const STATE = {
   createVisible: false,
@@ -50,15 +51,17 @@ export default {
   effects: {
     *query({payload}, {call, put}) {
       yield put({type: 'showLoading'});
-      const {data} = yield call(query, parse(payload));
-
-      if (data) {
+      try {
+        const {data} = yield call(query, parse(payload));
         yield put({
           type: 'querySuccess',
           payload: {
             items: data.results,
           },
         });
+      } catch (e) {
+        message.warning(e.message);
+        yield put({type: 'hideLoading'});
       }
     },
     *create({payload}, {call, put}) {

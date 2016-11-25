@@ -1,0 +1,49 @@
+.ant-layout-top {
+  height: 100%;
+}
+
+.ant-layout-top .ant-layout-wrapper {
+  padding: 0 50px;
+}
+
+.ant-layout-top .ant-layout-header {
+  height: 64px;
+  border-bottom: 1px solid #e9e9e9;
+  background: #fff;
+}
+
+.ant-layout-top .ant-layout-logo {
+  width: 120px;
+  height: 32px;
+  background: #eee;
+  border-radius: 6px;
+  float: left;
+  margin: 15px 28px 15px 0;
+}
+
+.ant-layout-top .ant-layout-nav {
+  line-height: 62px;
+}
+
+.ant-layout-top .ant-layout-user {
+  float: right;
+  margin: 15px 0px 15px 0;
+  line-height: 32px
+}
+
+.ant-layout-top .ant-layout-container {
+  background: #fff;
+  margin: 24px auto 0;
+  position: relative;
+  padding-top: 24px;
+  overflow: hidden;
+  max-width: 1200px;
+}
+
+.ant-layout-top .ant-layout-footer {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}

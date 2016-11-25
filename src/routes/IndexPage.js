@@ -1,17 +1,22 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'dva';
-import styles from './IndexPage.css';
-import MainLayout from '../components/MainLayout/MainLayout';
+import React, {Component, PropTypes} from "react";
+import {connect} from "dva";
+import MainLayout from "../components/Layout/Layout";
 
-const IndexPage = ({location}) => {
+const IndexPage = ({location, dispatch}) => {
   return (
-    <MainLayout location={location}>
-      <div>首页内容</div>
+    <MainLayout location={location} dispatch={dispatch}>
+      <div>欢迎使用【茄子印】</div>
     </MainLayout>
   );
-}
-
-IndexPage.propTypes = {
 };
 
-export default connect()(IndexPage);
+IndexPage.propTypes = {
+  location: PropTypes.object,
+  dispatch: PropTypes.func,
+};
+
+function mapStateToProps({user}) {
+  return {user};
+}
+
+export default connect(mapStateToProps)(IndexPage);
