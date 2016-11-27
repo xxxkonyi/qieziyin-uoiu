@@ -1,5 +1,6 @@
 .ant-layout-top {
   height: 100%;
+  min-width: 700px;
 }
 
 .ant-layout-top .ant-layout-wrapper {
