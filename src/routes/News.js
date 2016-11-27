@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from "react";
 import {routerRedux} from "dva/router";
 import {connect} from "dva";
+import moment from 'moment';
 import {Table} from "antd";
 import MainLayout from "../components/Layout/Layout";
 
@@ -26,7 +27,7 @@ const News = ({location, dispatch, news}) => {
     title: '来源',
     dataIndex: 'whereFrom',
     key: 'whereFrom',
-    width: 100,
+    width: 150,
   }, {
     title: '热门',
     dataIndex: 'isHotNews',
@@ -46,6 +47,7 @@ const News = ({location, dispatch, news}) => {
     sorter: true,
     sortOrder: sortColumn === 'createdAt' && sortOrder,
     width: 180,
+    render: (text) => moment(text).format('YYYY-MM-DD hh:mm:ss'),
   }];
 
   const newsTableProps = {
