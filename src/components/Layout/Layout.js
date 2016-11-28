@@ -28,7 +28,7 @@ const MainLayout = ({children, location, dispatch, user}) => {
   const menu = (
     <Menu>
       <Menu.Item>
-        个人资料
+        <Link to="/profile">个人资料</Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item>
@@ -52,7 +52,7 @@ const MainLayout = ({children, location, dispatch, user}) => {
                 <div>
                   <Dropdown overlay={menu}>
                     <a className="ant-dropdown-link">
-                      {user.current.name} <Icon type="down"/>
+                      {user.current.nickname} <Icon type="down"/>
                     </a>
                   </Dropdown>
                 </div>

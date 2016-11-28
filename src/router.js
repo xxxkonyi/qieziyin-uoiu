@@ -32,6 +32,15 @@ export default function({ history, app }) {
       },
     },
     {
+      path: '/profile',
+      name: 'profile',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          cb(null, require('./routes/user/Profile'));
+        });
+      },
+    },
+    {
       path: '/news',
       name: 'news',
       getComponent(nextState, cb) {

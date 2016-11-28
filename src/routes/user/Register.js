@@ -1,11 +1,29 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "dva";
-import MainLayout from "../../components/MainLayout/MainLayout";
+import MainLayout from "../../components/Layout/Layout";
+import RegisterForm from "../../components/User/RegisterForm";
 
-const Register = ({location, dispatch}) => {
+const Register = ({location, dispatch, user}) => {
+
+  const {
+    registerConfirmLoading = false,
+  } = user;
+
+  const registerFormProps = {
+    confirmLoading: registerConfirmLoading,
+    onRegister(data) {
+      dispatch({
+        type: `user/register`,
+        payload: data,
+      });
+    },
+  };
+
   return (
     <MainLayout location={location}>
-      <div>注册</div>
+      <div style={{margin: '50px 0'}}>
+        <RegisterForm {...registerFormProps}/>
+      </div>
     </MainLayout>
   );
 };
@@ -15,8 +33,8 @@ Register.propTypes = {
   dispatch: PropTypes.func,
 };
 
-function mapStateToProps({}) {
-  return {};
+function mapStateToProps({user}) {
+  return {user};
 }
 
 export default connect(mapStateToProps)(Register);

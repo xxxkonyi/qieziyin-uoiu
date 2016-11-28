@@ -13,7 +13,8 @@ const LoginForm = ({
     getFieldsValue,
   },
 }) => {
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     validateFields((errors) => {
       if (errors) {
         return;
@@ -23,11 +24,23 @@ const LoginForm = ({
     });
   }
 
+  function checkMobilePhone(rule, value, callback) {
+    if (!/^[\d]{11}$/.test(value)) {
+      callback('手机号码不合法');
+    } else {
+      callback();
+    }
+  }
+console.log(confirmLoading)
   return (
-    <Form className={styles["login-form"]}>
+    <Form className={styles["login-form"]} onSubmit={handleSubmit}>
       <FormItem>
         {getFieldDecorator('username', {
-          rules: [{required: true, message: '请输入手机号码'}],
+          rules: [{
+            validator: checkMobilePhone
+          }, {
+            required: true, message: '请输入手机号码',
+          }],
         })(
           <Input addonBefore={<Icon type="user"/>} placeholder="手机号码"/>
         )}
@@ -40,8 +53,7 @@ const LoginForm = ({
         )}
       </FormItem>
       <FormItem>
-        <Button type="primary" className={styles["login-form-button"]} loading={confirmLoading}
-                onClick={handleSubmit}>
+        <Button type="primary" className={styles["login-form-button"]} loading={confirmLoading} htmlType="submit">
           登 录
         </Button>
         <Link to="/forgot-password" className={styles["login-form-forgot"]}>忘记密码</Link><Link to="/register">注册</Link>
